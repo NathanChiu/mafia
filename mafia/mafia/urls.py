@@ -17,14 +17,10 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf.urls import url
 from django.contrib import admin
-from django.contrib.auth import views as auth_views
+# from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('polls/', include('polls.urls')),
     path('admin/', admin.site.urls),
-
-    # path('registration/', views.IndexView.as_view(), name='index'),
-    url(r'^login/$', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
-    # url(r'^logout/$', auth_views.logout, name='logout'),
-    # url(r'^admin/', admin.site.urls),
+    path('login/', include('login.urls'))
 ]
