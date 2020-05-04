@@ -7,7 +7,9 @@ from django.utils import timezone
 # from .models import Choice, Question
 from django.contrib import messages
 from django.contrib.auth import views as auth_views
-from django.contrib.auth import login, authenticate, update_session_auth_hash
+from django.contrib.auth import authenticate, update_session_auth_hash
+from django.contrib.auth import login as django_login
+from django.contrib.auth import logout as django_logout
 from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 # Create your views here.
 
@@ -15,6 +17,10 @@ from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 class IndexView(auth_views.LoginView):
     template_name = 'login/index.html'
 
+def logout(request):
+    if request.user.is_authenticated:
+        django_logout(request)
+    return redirect('/login/')
 
 def signup(request):
     if request.method == 'POST':
@@ -24,7 +30,7 @@ def signup(request):
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
-            login(request, user)
+            django_login(request, user)
             return redirect('/login/')
     else:
         form = UserCreationForm()
@@ -35,6 +41,7 @@ def change_password(request):
         form = PasswordChangeForm(request.user, request.POST)
         if form.is_valid():
             user = form.save()
+            #log the user in
             update_session_auth_hash(request, user)
             messages.success(request, 'Your password was successfully updated.')
             return redirect('/login/')

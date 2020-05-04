@@ -1,0 +1,36 @@
+/* label{
+display:inline-block;
+width:200px;
+margin-right:30px;
+text-align:right;
+}
+
+input{
+
+}
+
+fieldset{
+border:none;
+width:500px;
+margin:0px auto;
+} */
+
+.container {
+  width: 500px;
+  clear: both;
+  /* display:inline-block */
+}
+
+.container input {
+  width: 100%;
+  clear: both;
+  /* display:inline-block */
+}
+
+.centered {
+    /* margin: 0 auto; */
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+    width: 50%;
+}
