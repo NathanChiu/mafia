@@ -13,7 +13,6 @@ from django.contrib.auth import logout as django_logout
 from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 # Create your views here.
 
-
 class IndexView(auth_views.LoginView):
     template_name = 'login/index.html'
 
@@ -21,6 +20,12 @@ def logout(request):
     if request.user.is_authenticated:
         django_logout(request)
     return redirect('/login/')
+
+def getErrorMessages(errors_as_data):
+    err_messages = []
+    for val in errors_as_data.values():
+        err_messages.append(val[0].message)
+    return err_messages
 
 def signup(request):
     if request.method == 'POST':
@@ -32,9 +37,17 @@ def signup(request):
             user = authenticate(username=username, password=raw_password)
             django_login(request, user)
             return redirect('/login/')
+        else:
+            err_messages = getErrorMessages(form.errors.as_data())
+            # error_data = form.errors.as_data()
+            # err_messages = []
+            # for val in error_data.values():
+            #     err_messages.append(val[0].message)
+            return render(request, 'login/signup.html', {'form': form, 'err_messages': err_messages})
     else:
         form = UserCreationForm()
-    return render(request, 'login/signup.html', {'form': form})
+        user = request.user
+    return render(request, 'login/signup.html', {'form': form, 'user':user})
 
 def change_password(request):
     if request.method == 'POST':
@@ -46,7 +59,16 @@ def change_password(request):
             messages.success(request, 'Your password was successfully updated.')
             return redirect('/login/')
         else:
-            messages.error(request, 'Please correct the error below.')
+            err_messages = getErrorMessages(form.errors.as_data())
+            # error_data = form.errors.as_data()
+            # err_messages = []
+            # for val in error_data.values():
+            #     err_messages.append(val[0].message)
+            return render(request, 'login/change_password.html', {'form': form, 'err_messages': err_messages})
+
+        # else:
+        #
+        #     messages.error(request, 'Please correct the error below.')
     else:
         form = PasswordChangeForm(request.user)
     return render(request, 'login/change_password.html', {'form':form})

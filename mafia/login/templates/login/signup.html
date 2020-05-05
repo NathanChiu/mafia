@@ -5,10 +5,46 @@ Signup
 {% endblock %}
 
 {% block content %}
+  {% if not user.is_authenticated %}
+    <form method="post">
+      {% csrf_token %}
+        <h2>Signup</h2>
+        <fieldset>
+          <div class="container">
+            <label>Username: </label>
+            <input id="username" type="text" name="username">
+            <label>Password: </label>
+            <input id="password1" type="password" name="password1">
+            <label>Confirm new password: </label>
+            <input id="password2" type="password" name="password2">
+            <button type="submit">Create</button>
+          </div>
+          <p>I've turned off password strength validation, so use as good or as crap of a password as you want.</p>
+        </fieldset>
+    </form>
+  {% else %}
+    <div class="centered">
+      You are currently logged in.
+    </div>
+  {% endif %}
+
+  {% if err_messages %}
+    {% for message in err_messages %}
+      <p>{{ message }}</p>
+    {% endfor %}
+  {% endif %}
+
+  {% if wrong_pass %}
+  Password mismatch, please try again.
+  {% endif %}
+
+{% endblock %}
+
+{% comment %}
   <h2>Sign up</h2>
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Sign up</button>
   </form>
-{% endblock %}
+{% endcomment %}
