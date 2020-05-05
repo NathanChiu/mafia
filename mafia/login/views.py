@@ -39,10 +39,6 @@ def signup(request):
             return redirect('/login/')
         else:
             err_messages = getErrorMessages(form.errors.as_data())
-            # error_data = form.errors.as_data()
-            # err_messages = []
-            # for val in error_data.values():
-            #     err_messages.append(val[0].message)
             return render(request, 'login/signup.html', {'form': form, 'err_messages': err_messages})
     else:
         form = UserCreationForm()
@@ -60,15 +56,7 @@ def change_password(request):
             return redirect('/login/')
         else:
             err_messages = getErrorMessages(form.errors.as_data())
-            # error_data = form.errors.as_data()
-            # err_messages = []
-            # for val in error_data.values():
-            #     err_messages.append(val[0].message)
             return render(request, 'login/change_password.html', {'form': form, 'err_messages': err_messages})
-
-        # else:
-        #
-        #     messages.error(request, 'Please correct the error below.')
     else:
         form = PasswordChangeForm(request.user)
     return render(request, 'login/change_password.html', {'form':form})
