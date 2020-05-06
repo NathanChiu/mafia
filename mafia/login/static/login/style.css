@@ -1,30 +1,12 @@
-/* label{
-display:inline-block;
-width:200px;
-margin-right:30px;
-text-align:right;
-}
-
-input{
-
-}
-
-fieldset{
-border:none;
-width:500px;
-margin:0px auto;
-} */
-
 .container {
   width: 500px;
   clear: both;
-  /* display:inline-block */
 }
 
+/* center inputs within a container */
 .container input {
   width: 100%;
   clear: both;
-  /* display:inline-block */
 }
 
 .centered {
@@ -33,4 +15,17 @@ margin:0px auto;
     margin-right: auto;
     text-align: left;
     width: 50%;
+}
+
+.centered p {
+  width: 100%;
+}
+
+msg p {
+  font-weight: bold;
+}
+
+err_msg p {
+  color: red;
+  font-weight: bold;
 }

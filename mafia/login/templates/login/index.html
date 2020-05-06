@@ -5,11 +5,27 @@ Login from login.app
 {% endblock %}
 
 {% block content %}
-<h2>Login from login.app</h2>
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Login</button>
-</form>
-Don't have an account? Create an account <a href="/login/signup">here</a>.
+  {% if not user.is_authenticated %}
+    <h2>Login from login.app</h2>
+    <form method="post">
+      {% csrf_token %}
+      <fieldset>
+        <div class="container">
+          <label>Username:</label>
+          <input id="username" type="text" name="username" >
+          <label>Password: </label>
+          <input id="password" type="password" name="password">
+          <button type="submit">Save changes</button>
+        </div>
+      </fieldset>
+    </form>
+    <br>
+    <div class="container">
+      Don't have an account? Create an account <a href="/login/signup">here</a>.
+    <div>
+  {% else %}
+    <div class="container">
+      You are logged in.
+    <div>
+  {% endif %}
 {% endblock %}

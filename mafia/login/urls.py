@@ -10,7 +10,8 @@ app_name = 'login'
 #     path('<int:question_id>/vote/', views.vote, name="vote"),
 # ]
 urlpatterns = [
-    path('', views.IndexView.as_view(), name='index'),
+    # path('', views.IndexView.as_view(), name='index'),
+    path('', views.index, name='index'),
     path('signup/', views.signup, name='signup'),
     path('change_password/', views.change_password, name='change_password'),
     path('logout', views.logout, name='logout'),

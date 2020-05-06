@@ -1,4 +1,5 @@
-{% load static %}<!DOCTYPE html>
+{% load static %}
+<!DOCTYPE html>
 <link rel="stylesheet" type="text/css" href="{% static 'login/style.css' %}">
 <html>
   <head>
@@ -13,10 +14,37 @@
     <a href="/login/">Log in</a>
     {% endif %}
     <div class="container">
+      <!-- <p>HELLO</p> -->
       <ol class="breadcrumb my-4">
         {% block breadcrumb %}
         {% endblock %}
       </ol>
+
+      <!-- ERROR MESSAGES -->
+      <div class="centered">
+        {% if err_messages %}
+          <div class="container">
+            <err_msg>
+                {% for message in err_messages %}
+                  <p>{{ message }}</p>
+                {% endfor %}
+            </err_msg>
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- MESSAGES -->
+      <div class="centered">
+        {% if messages %}
+          <div class="container">
+            <msg>
+                {% for message in messages %}
+                  <p>{{ message }}</p>
+                {% endfor %}
+            </msg>
+          </div>
+        {% endif %}
+      </div>
       <div class="centered">
         {% block content %}
         {% endblock %}
