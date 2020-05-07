@@ -21,11 +21,15 @@
   width: 100%;
 }
 
-msg p {
+.error {
+  color: red;
   font-weight: bold;
 }
 
-err_msg p {
-  color: red;
-  font-weight: bold;
+.success {
+  color: green;
+}
+
+.info {
+
 }
