@@ -43,6 +43,7 @@ def index(request):
 def logout(request):
     if request.user.is_authenticated:
         django_logout(request)
+        messages.info(request, 'You have been logged out.')
     return redirect('/login/')
 
 

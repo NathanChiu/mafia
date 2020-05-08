@@ -10,7 +10,7 @@ from .models import Question
 def create_question(question_text, days):
     #Create a question with give question text and days offset. Negative for past, positive for future.
     time = timezone.now() + datetime.timedelta(days=days)
-    return Question.objects.create_user(question_text=question_text, pub_date=time)
+    return Question.objects.create(question_text=question_text, pub_date=time)
 
 class QuestionIndexViewTests(TestCase):
     def test_no_questions(self):

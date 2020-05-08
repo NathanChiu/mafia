@@ -27,17 +27,6 @@ Signup
       You are currently logged in.
     </div>
   {% endif %}
-
-  {% if err_messages %}
-    {% for message in err_messages %}
-      <p>{{ message }}</p>
-    {% endfor %}
-  {% endif %}
-
-  {% if wrong_pass %}
-  Password mismatch, please try again.
-  {% endif %}
-
 {% endblock %}
 
 {% comment %}
