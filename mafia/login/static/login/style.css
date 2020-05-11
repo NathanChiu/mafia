@@ -21,6 +21,7 @@
   width: 100%;
 }
 
+/* Classes for the error messages. */
 .error {
   color: red;
   font-weight: bold;
