@@ -1,9 +1,11 @@
 {% load static %}
 <!DOCTYPE html>
-<link rel="stylesheet" type="text/css" href="{% static 'login/style.css' %}">
+<!-- <link rel="stylesheet" type="text/css" href="{% static 'login/style.css' %}"> -->
 <html>
   <head>
+    <meta charset="utf-8">
     <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'login/bootstrap.min.css' %}">
   </head>
   <body>
     <!-- Top nav bar -->
@@ -13,7 +15,8 @@
       <a href="/login/">Log in</a>
     {% endif %}
 
-    <div class="container">
+    <div class="main">
+      <div class="container">
 
       <!-- Trailing path -->
       <ol class="breadcrumb my-4">
@@ -25,11 +28,26 @@
       <div class="centered">
         {% if messages %}
         <div class="container">
-          <ul class="messages">
+          {% for message in messages %}
+            {% if message.tags == 'error' %}
+            <div class="alert alert-danger" role="alert">
+              {{ message }}
+            </div>
+            {% elif message.tags == 'success' %}
+            <div class="alert alert-success" role="alert">
+              {{ message }}
+            </div>
+            {% elif message.tags == 'info' %}
+            <div class="alert alert-info" role="alert">
+              {{ message }}
+            </div>
+            {% endif %}
+          {% endfor %}
+          <!-- <ul class="messages">
               {% for message in messages %}
               <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
               {% endfor %}
-          </ul>
+          </ul> -->
         </div>
         {% endif %}
       </div>

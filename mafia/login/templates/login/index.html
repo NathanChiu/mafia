@@ -1,29 +1,38 @@
 {% extends 'login/base.html' %}
 
+{% load static %}
+<!-- Extra css for login form -->
+<link rel="stylesheet" type="text/css" href="{% static 'login_form.css' %}">
+
 {% block title %}
-Login from login.app
+Login
+{% endblock %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item active">Login</li>
 {% endblock %}
 
 {% block content %}
   {% if not user.is_authenticated %}
-    <h2>Login from login.app</h2>
-    <form method="post">
-      {% csrf_token %}
-      <fieldset>
-        <div class="container">
-          <label>Username:</label>
-          <input id="username" type="text" name="username" >
-          <label>Password: </label>
-          <input id="password" type="password" name="password">
-          <button type="submit">Log in</button>
+  <!-- Not logged in -->
+    <div class="login-form">
+      <form method="post">
+        {% csrf_token %}
+        <h2 class="text-center">Log In</h2>
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Username" id="username" name="username">
         </div>
-      </fieldset>
-    </form>
-    <br>
-    <div class="container">
-      Don't have an account? Create an account <a href="/login/signup">here</a>.
-    <div>
+        <div class="form-group">
+          <input type="Password" class="form-control" placeholder="Password" id="password" name="password">
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary btn-block">Log in</button>
+        </div>
+      </form>
+      <p class="text-center"><a href="/login/signup/">Create an Account</a></p>
+    </div>
   {% else %}
+  <!-- Logged in -->
     <div class="container">
       You are logged in.
     <div>
