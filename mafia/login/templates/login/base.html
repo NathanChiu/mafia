@@ -10,7 +10,7 @@
   <body>
     <!-- Top nav bar -->
     {% if request.user.is_authenticated %}
-      Logged in as: {{ user.username }} <a href="/login/logout">Log out</a>
+      Logged in as: {{ user.username }} <a href="/login/logout/">Log out</a> <a href="/login/change_password/">Change password</a>
     {% else %}
       <a href="/login/">Log in</a>
     {% endif %}

@@ -22,5 +22,6 @@ from django.contrib import admin
 urlpatterns = [
     path('polls/', include('polls.urls')),
     path('admin/', admin.site.urls),
-    path('login/', include('login.urls'))
+    path('login/', include('login.urls')),
+    path('player_profile/', include('player_profile.urls'))
 ]
