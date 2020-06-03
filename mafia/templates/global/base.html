@@ -4,10 +4,10 @@
   <head>
     <meta charset="utf-8">
     <title>{% block title %}{% endblock %}</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'player_profile/bootstrap.min.css' %}">
-    <script type="text/javascript" src="{% static 'player_profile/jquery-3.5.1.slim.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'player_profile/popper.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'player_profile/bootstrap.min.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'global/bootstrap.min.css' %}">
+    <script type="text/javascript" src="{% static 'global/jquery-3.5.1.slim.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'global/popper.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'global/bootstrap.min.js' %}"></script>
   </head>
   <body>
     <!-- Top nav bar -->
@@ -24,13 +24,13 @@
           <a class="nav-link" href="#">Link 2</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="">Player profile</a>
+          <a class="nav-link {% if 'player_profile' in request.path %} active {% endif %}" href="">Player profile</a>
         </li>
         <li class="nav-item">
           <a class="nav-link disabled" href="">Disabled</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Account</a>
+          <a class="nav-link dropdown-toggle {% if 'login' in request.path %} active {% endif %}" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Account</a>
           <div class="dropdown-menu">
             <h6 class="dropdown-header">Logged in as: {{ user.username }}</h6>
             <a class="dropdown-item" href="/login/change_password/">Change password</a>
