@@ -6,7 +6,7 @@ from django.dispatch import receiver
 class PlayerProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     alias = models.CharField(max_length=100)
-    nums = models.IntegerField(default=0)
+    skill_uses_remaining = models.IntegerField(default=0)
 
 # connect this function to occur whenever post_save signal is triggered
 @receiver(post_save, sender=User)
